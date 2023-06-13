@@ -50,7 +50,11 @@ const Header = () => {
             }, 1000);
         }
     };
-
+    const searchBun=()=>{
+        if (query.length > 0) {
+          navigate(`/search/${query}`);
+        }
+      }
     const openSearch = () => {
         setMobileMenu(false);
         setShowSearch(true);
@@ -112,6 +116,7 @@ const Header = () => {
                                 placeholder="Search for a movie or tv show...."
                                 onChange={(e) => setQuery(e.target.value)}
                                 onKeyUp={searchQueryHandler}
+                                onClick={searchBun}
                             />
                             <VscChromeClose
                                 onClick={() => setShowSearch(false)}
