@@ -11,6 +11,7 @@ import ContentWrapper from "../contentWrapper/ContentWrapper";
 import Img from "../lazyLoadImage/Img";
 import PosterFallback from "../../Moviex-images/no-poster.png";
 import Genres from "../genres/Genres";
+// import Favourites from "../favourites/Favourites";
 const skItem=()=>{
   return (
     <div className="skeletonItem">
@@ -56,12 +57,15 @@ const Carousel = ({ data, loading,endpoint ,title}) => {
             const posterUrl = item.poster_path ? url.poster + item.poster_path : PosterFallback;
             // console.log(item.genre_ids)
             return (
-              <div className="carouselItem" key={item.id} onClick={()=>navigate(`/${item.media_type || endpoint}/${item.id}`)}>
-                <div className="posterBlock">
+              
+              
+              <div className="carouselItem" key={item.id} >
+                <div className="posterBlock" onClick={()=>navigate(`/${item.media_type || endpoint}/${item.id}`)}>
                   <Img src={posterUrl}/>
                   <CircleRating rating={item.vote_average.toFixed(1)}/>
                   <Genres data={item.genre_ids.slice(0,2)}/>
                 </div>
+                
                 <div className="textBlock">
                   <span className="title">
                     {item.title || item.name}
@@ -70,7 +74,9 @@ const Carousel = ({ data, loading,endpoint ,title}) => {
                     {dayjs(item.release_Date).format("MMM D,YYYY")}
                   </span>
                 </div>
+                {/* <Favourites/> */}
               </div>
+             
             )
           })}
 
